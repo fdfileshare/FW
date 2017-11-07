@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+// =====================================
+//	共通
+//=====================================
+// @import "_var", "_screen", "_mixin", "_keyframe", "_extend";
+@import "_var", "_screen", "_mixin";
+
+
+// td.in_list input[type=checkbox].disabled:checked:before,
+// td.in_list input[type=checkbox]:disabled,
+// td.in_list input[type=checkbox]:disabled:checked:before{
+//   display: none;
+//   border: none;
+//   background-color: transparent;
+//   box-shadow: none;
+//   -webkit-box-shadow: none;
+//   -moz-box-shadow: none;
+//   cursor: default;
+// }
+
+
+/*
+admin bar 非表示項目
+*/
+
+#wp-admin-bar-comments,
+#wp-admin-bar-new-content,
+#wp-admin-bar-wp-logo,
+#wp-admin-bar-view{
+  // display: none;
+}
+.widget-liquid-right{
+  .sidebars-column-1{
+    .widgets-holder-wrap{
+      &:first-child, &:nth-of-type(2){
+        display: none;
+      }
+    }
+  }
+  .sidebars-column-2{
+    .widgets-holder-wrap{
+      &:last-child{
+        display: none;
+      }
+    }
+  }
+}
+/*
+左メニューを180pxに変更
+*/
+
+// #adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap{
+//   width: 180px;
+// }
+// #wpcontent, #wpfooter{
+//   margin-left: 180px;
+// }
+// #adminmenu .wp-submenu{
+//   left: 180px;
+// }
+//
+// #poststuff{
+//   padding-bottom: 200px;
+// }
+
+
+/*
+  ダッシュボード：概要
+------------------------------------------------------------------
+*/
+
+
+/*
+  advanced custom field
+------------------------------------------------------------------
+*/
+
+
+/*
+  カテゴリ登録画面
+------------------------------------------------------------------
+*/
+.taxonomy-products_category{
+  #wpbody-content{
+    .term-description-wrap{
+      display: none;
+    }
+    #col-left{
+      width: 45%;
+    }
+    #col-right{
+      width: 55%;
+    }
+  }
+}
+
+

@@ -1,0 +1,1426 @@
+@charset "UTF-8";
+
+@import "_var", "_screen", "_mixin", "_keyframe", "_extend";
+
+/* =====================================
+  全体設定
+===================================== */
+
+body {
+  min-width: inherit;
+}
+.sp{
+  display: block;
+}
+.pc{
+  display: none;
+}
+
+/* =====================================
+  header
+===================================== */
+.spSearchBar{
+
+}
+.header {
+  height: $headerHeight;
+  min-width: inherit;
+  .headerInner{
+    padding: 0 10px;
+  }
+  .siteLogo{
+    @include transition( all .5s ease-out );
+    a{
+      padding-bottom: 3px;
+    }
+    width: 110px;
+    img{
+      vertical-align: middle;
+    }
+  }
+  .spSearchBarArea{
+    display: table;
+    height: 100%;
+    width: calc( 100% - 150px );
+    padding: 0 0 0 7px;
+    @include box_sizing;
+  }
+  .spSearchBar{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    form{
+      overflow: hidden;
+    }
+    input, button, span{
+      width: calc( 100% - 25px );
+    }
+    [type="search"]{
+      // width: calc( 100% - 25px );
+      margin-right: 2px;
+      font-family: $font_en;
+    }
+    [type="submit"], span{
+      text-indent: -9999px;
+      height: 18px;
+      width: 18px;
+      padding: 0 5px;
+      background: image-url('common/sp/icn-search.svg') center center no-repeat;
+      border: 0;
+      @include box_sizing;
+    }
+    [type="submit"]{
+      opacity: 0;
+    }
+    span{
+      margin-top: -9px;
+    }
+    &.opened{
+      padding-left: 0;
+      [type="submit"]{
+        opacity: 1;
+      }
+      [type="search"]{
+        @include border-radius(5px!important);
+      }
+    }
+  }
+  .gNavWrapper{
+    display: none;
+  }
+}
+.drawerSpNavWrapper{
+  position: relative;
+  z-index: 1002;
+  display: block;
+  width: 100%;
+}
+.drawerSpNav{
+  width: 80%;
+  padding: 0 20px;
+  background: $keyColor;
+  color: white;
+  @include box_sizing;
+  a{
+    display: block;
+    text-decoration: none;
+    color: white;
+    line-height: 1;
+    overflow-wrap: break-word;
+  }
+  span{
+    line-height: 1;
+  }
+  li{
+    font-size: 2.2rem;
+    font-weight: 700;
+    padding-bottom: 20px;
+    li{
+      padding: 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(#fff, 0.6);
+      a{
+        padding: 5px 15px 6px;
+        line-height: 1.4;
+      }
+      &:first-of-type{
+        border-top: 1px solid rgba(#fff, 0.6);
+      }
+    }
+    ul{
+      padding: 18px 0 0 25px;
+      &.children{
+        padding-top: 0;
+        padding-left: 15px;
+        border-top: 1px solid rgba(#fff, 0.6);
+        li{
+          border-top: 0;
+          &:last-of-type{
+            border-bottom: 0;
+          }
+        }
+        a{
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+  .drawer-menu{
+    padding: 18px 0 25px;
+  }
+}
+.drawerSpNavToggle{
+  right: 0!important;
+}
+.drawer--right{
+  .drawerSpNav{
+    right: -80%;
+  }
+}
+.drawer--right.drawer-open{
+  .drawerSpNavToggle{
+    right: 80%!important;
+  }
+  .header{
+    .siteLogo{
+      opacity: 0.3;
+    }
+  }
+}
+
+/* =====================================
+  topicPath
+===================================== */
+
+.topicPath {
+}
+
+
+/* =====================================
+  content
+===================================== */
+.hasSidebar{
+  width: 100%;
+  padding: 50px 0;
+  article{
+    float: none;
+    width: 100%;
+    padding: 0 10px;
+    padding-bottom: 30px;
+  }
+  article, .sideContentsMenu{
+    @include box_sizing;
+  }
+}
+
+
+/* =====================================
+  sidebar
+===================================== */
+.sideContentsMenu{
+  float: none;
+  width: 100%;
+  padding: 0 30px;
+}
+
+
+/* =====================================
+  components
+===================================== */
+
+// 見出し
+// --------------------------------------------------
+h1{
+  &.postTitle{
+    font-size: 3rem;
+  }
+}
+h2, h3, h4, h5, h6{
+  position: relative;
+  padding: 0;
+  font-weight: 700;
+  color: $keyColor;
+}
+h2{
+  margin: 0 0 40px;
+  font-size: 3.4rem;
+}
+h3{
+  font-size: 2.2rem;
+  margin: 0 0 10px;
+}
+h4,
+.sidebar-title,
+.item-title{
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+
+// ボタン
+// --------------------------------------------------
+.btn{
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 5px 15px;
+  line-height: 1;
+  @include background( linear-gradient(#fff, #dddede) );
+  &:hover{
+    text-decoration: none;
+    opacity: 0.6;
+    // @include background( linear-gradient(#dddede, #fff) );
+  }
+}
+.btn-skyblue{
+  @extend .btn;
+  color: white;
+  @include background( linear-gradient(#7cd0e9, #6ccae7) );
+}
+.btn-blue{
+  @extend .btn;
+  color: white;
+  @include background( linear-gradient(#2085c4, #035c97) );
+}
+.btn-large{
+  @extend .btn;
+  padding: 10px 20px;
+}
+.btn-skyblue-large{
+  @extend .btn-skyblue;
+  @extend .btn-large;
+}
+.btn-blue-large{
+  @extend .btn-blue;
+  @extend .btn-large;
+}
+.btn-back{
+  padding: 0.714em 0;
+  color: #333;
+  background: white;
+  border-color: #333;
+  &:after{
+    display: none;
+  }
+  &:before{
+    display: inline-block;
+    content: '';
+    padding-left: 0.714em;
+    // // background-image: image-url('common/arw-orange-02.png');
+    @include rotate(180deg);
+  }
+}
+// more btn
+.btn-moreall{
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 3.214em 0;
+  font-size: 1.2rem;
+  line-height: 1;
+  text-align: center;
+  background: #e6ebed;
+
+  &:after{
+    position: relative;
+    top: -2px;
+    content: '';
+    display: inline-block;
+    margin: 0 0 0 9px;
+    // width: image-width('common/arw-orange.png') / 2;
+    // height: image-height('common/arw-orange.png') / 2;
+    // background: image-url('common/arw-orange.png') no-repeat;
+    background-size: 100% auto;
+    vertical-align: middle;
+  }
+}
+// more btn white
+.btn-moreall-white{
+  background: white;
+}
+
+
+// リンク
+// --------------------------------------------------
+// more link
+.link-more{
+  display: inline-block;
+  position: relative;
+  margin-left: 35px;
+  line-height: 1.3;
+  border-bottom: 1px solid #333;
+  &:before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -35px;
+    margin-top: -12px;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    // background: image-url('common/icn-plus.png') image-width('common/icn-plus.png') / 4 image-height('common/icn-plus.png') / 4 no-repeat $keyColor;
+    background-size: 50% auto;
+    @include border-radius(50%);
+  }
+}
+
+// pdf link
+.link-pdf{
+  text-decoration: underline;
+  &:after{
+    position: relative;
+    content: '';
+    display: inline-block;
+    margin-left: 10px;
+    top: 1px;
+    // width: image-width('common/icn-pdf.png') / 2;
+    // height: image-height('common/icn-pdf.png') / 2;
+    // background: image-url('common/icn-pdf.png') center center no-repeat;
+    background-size: 100% auto;
+  }
+}
+
+// file link
+.link-file{
+  &:before{
+    content: '';
+    position: relative;
+    display: inline-block;
+    width: image-width('common/icn-file.png') / 2;
+    height: image-height('common/icn-file.png') / 2;
+    margin: 0 15px 0 0;
+    margin-top: -1px;
+    background: image-url('common/icn-file.png') center center no-repeat;
+    background-size: 100% auto;
+    vertical-align: middle;
+  }
+}
+
+a{
+  &:hover{
+    .btn{
+      opacity: 0.6;
+    }
+    h2, h3, h4, h5, h6{
+      text-decoration: none;
+      color: #ffde40;
+    }
+  }
+}
+
+
+// intro text
+// --------------------------------------------------
+.leadText{
+  text-align: center;
+  line-height: 2;
+}
+
+
+// font style
+// --------------------------------------------------
+.attention{
+  color: red;
+}
+
+.notes{
+  font-size: 1.3rem;
+}
+
+
+// block
+// --------------------------------------------------
+.innerBlock{
+  @extend %liquidStyle;
+  @include box_sizing;
+}
+
+// section
+.section{
+  // padding: 0 0 100px;
+}
+
+// 中央揃えのボタン
+.btnArea{
+  text-align: center;
+}
+
+// 導入テキスト
+.introArea{
+  max-width: inherit;
+  margin: 0 auto;
+  .clmn-2{
+    display: block;
+    margin: 0;
+    .block{
+      width: 100%;
+      float: none;
+    }
+    p{
+      width: 100%;
+      text-align: justify;
+    }
+    .textRight{
+      padding: 0;
+      text-align: left;
+    }
+    .textBlock{
+      display: block;
+      padding: 20px 40px 50px;
+      .textInner{
+        display: block;
+      }
+    }
+    &.thumbRight{
+      .thumbBlock{
+        float: none;
+      }
+      .textBlock{
+        padding: 20px 40px 50px;
+        h3{
+          text-align: left;
+        }
+        p{
+          margin: 0 0 0 auto;
+        }
+      }
+    }
+  }
+}
+
+// フロートするボックス
+// --------------------------------------------------
+.clmn-2, .clmn-3, .clmn-4, .clmn-5,
+.clmn-2-block, .clmn-3-block, .clmn-4-block, .clmn-5-block{
+  @include clearfix;
+  .block{
+    float: left;
+    @include box_sizing;
+  }
+}
+// 2こ
+.clmn-2{
+  .block{
+    width: 50%;
+  }
+  &.ph-right{
+    .thumbBlock{
+      float: right;
+    }
+    .textBlock{
+      float: left;
+    }
+  }
+}
+// 3こ
+.clmn-3{
+  .block{
+    width: calc( ( 100% - 1px ) /3 );
+  }
+}
+.clmn-3-block{
+  .block{
+    margin-right: 20px;
+    width: calc( ( 100% - 40px ) / 3 );
+    &:nth-of-type(3n){
+      margin-right: 0;
+    }
+  }
+}
+// 4こ
+.clmn-4{
+  .block{
+    width: 25%;
+  }
+}
+// 5こ
+.clmn-5{
+  .block{
+    width: 20%;
+  }
+}
+
+
+// modules
+// --------------------------------------------------
+.carouselItemsWrapper{
+  padding: 0 10px;
+}
+.carouselItems{
+  max-width: inherit;
+}
+.slideItem{
+  float: left;
+  margin: 0 0 50px;
+  width: calc( ( 100% - 15px ) / 2 );
+  &:nth-of-type(2n){
+    float: right;
+  }
+  figure{
+    img{
+      width: 100%;
+    }
+  }
+  figcaption{
+    font-size: 1.6rem;
+  }
+  p{
+    display: none;
+  }
+}
+
+
+// related items
+// --------------------------------------------------
+.relatedItems{
+  padding: 30px 20px 40px;
+  h2{
+    font-size: 2.4rem;
+    text-align: center;
+  }
+}
+
+// post Contensts
+// --------------------------------------------------pro
+.postContents{
+  overflow: hidden;
+  h2{
+    line-height: 1.3;
+  }
+}
+
+// contact form
+// --------------------------------------------------
+dd.item-content{
+  padding-top: 4px;
+  margin: 0 0 20px;
+}
+.mwform-errors{
+}
+p.mwform-btn{
+  margin: 40px 0 80px;
+}
+
+// ページおくり
+// --------------------------------------------------
+.wp-pagenavi{
+  a, span{
+    padding: 4px 8px!important;
+    font-size: 1.2rem;
+  }
+}
+
+// --------------------------------------------------
+// components end
+
+
+/* =====================================
+  pages
+===================================== */
+// TOP
+// --------------------------------------------------
+.home{
+  .content{
+    position: relative;
+    padding: 0!important;
+  }
+  .mainImageWrapper{
+    width: 100%;
+    h2{
+      font-size: 2.4rem!important;
+      padding: 0 45px!important;
+      @include box_sizing;
+    }
+    &.hasModal{
+      height: 455px;
+      height: 380px;
+      h2{
+        bottom: 50px;
+      }
+    }
+  }
+  .section{
+    padding: 50px 0;
+  }
+  .introArea{
+    margin: 0 20px;
+  }
+  .featuredArea{
+    padding-bottom: 10px;
+    background: $color_bg_gray;
+    h2{
+      font-size: 2.4rem;
+    }
+    .btnArea{
+      margin-top: 0;
+      margin-bottom: 50px;
+    }
+  }
+  .newsIndexArea{
+    padding-bottom: 80px;
+    h2{
+      font-size: 2.4rem;
+    }
+    .innerBlock{
+      padding: 0;
+    }
+    figure{
+      margin-bottom: 8px;
+      img{
+        width: 100%;
+        height: auto;
+      }
+    }
+    .clmn-3-block{
+      margin-bottom: 0;
+    }
+    .block{
+      width: 100%;
+      margin: 0 0 40px;
+      a{
+        padding: 0 30px;
+      }
+    }
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+}
+// --------------------------------------------------
+
+// products
+// --------------------------------------------------
+.page-products{
+  .innerBlock{
+    max-width: 1200px;
+    padding: 0;
+  }
+}
+.itemIndexList{
+  padding: 0;
+  background: #fff;
+  a{
+    &:hover{
+      img{
+        opacity: 1;
+      }
+    }
+  }
+  .itemNameArea, .itemNameArea > a{
+    display: block;
+    height: auto;
+  }
+  .itemNameArea{
+    margin: 0;
+    padding-bottom: 2px;
+    @include background( linear-gradient(#e8e8e8 30%, #fff 50%) );
+    a{
+      padding: 20px 20px 0;
+      @include box_sizing;
+    }
+    h2, figure{
+      display: block;
+      vertical-align: bottom;
+    }
+    h2{
+      margin: 0 0 10px;
+      padding-bottom: 0;
+      font-size: 2.4rem;
+      &:before{
+        position: relative;
+        top: 3px;
+        width: 45px;
+        height: 26px;
+        background-position: left center;
+        background-size: auto 100%;
+      }
+    }
+    figure{
+      text-align: center;
+    }
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: block;
+      height: 2px;
+      width: 100%;
+      @include background( linear-gradient(to right, rgba(#000, 0.2), rgba(#000, 1), rgba(#000, 0.2)) );
+      opacity: 0.1;
+    }
+  }
+  .innerBlock{
+    > h2{
+      position: relative;
+      text-align: left;
+      &:before{
+        content: '';
+        position: relative;
+        top: 4px;
+        display: inline-block;
+        width: 54px;
+        height: 38px;
+        margin: 0 5px 0 0;
+        background: image-url('common/icn-fukuda.svg') center center no-repeat;
+      }
+    }
+  }
+  .toggleList{
+    position: relative;
+    display: block;
+    // margin: 0 10px;
+    padding: 10px 0 25px;
+    text-align: center;
+    cursor: pointer;
+    background: image-url('common/arw-expand.svg') center bottom 10px no-repeat;
+    background-size: 45px auto;
+    @include transition( background .1s ease-out );
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: block;
+      height: 2px;
+      width: 100%;
+      @include background( linear-gradient(to right, rgba(#000, 0.2), rgba(#000, 1), rgba(#000, 0.2)) );
+      opacity: 0.1;
+    }
+    &.expanded{
+      padding: 25px 0 10px;
+      background: image-url('common/arw-expand-close.svg') center top 10px no-repeat;
+    }
+  }
+  .itemLists{
+    display: none;
+    text-align: left;
+    .btn-blue-large{
+      display: none;
+    }
+    h3, .thumb{
+      display: block;
+      span{
+        display: block;
+        vertical-align: middle;
+        img{
+          max-width: 100%;
+        }
+      }
+    }
+    h3{
+      display: table;
+      float: right;
+      width: 65%;
+      margin: 0;
+      padding: 0;
+      font-size: 1.8rem;
+      span{
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+    h4{
+      margin: 0 0 5px;
+    }
+    .thumb{
+      float: left;
+      width: 30%;
+      padding: 0;
+    }
+    .details{
+      padding: 0;
+    }
+    .block{
+      float: none;
+      width: 100%;
+      padding: 20px 0;
+      a{
+        display: block;
+        width: 100%;
+        padding: 0 20px;
+        @include clearfix;
+        @include box_sizing;
+      }
+      &:after{
+        display: none;
+      }
+      &.noCategoryItems{
+        h3{
+          display: none;
+        }
+      }
+    }
+    &.clmn-3{
+      padding: 0 20px;
+      .block{
+        width: 48%;
+        float: left;
+        &:nth-of-type(2n){
+          float: right;
+        }
+        a{
+          padding: 0;
+        }
+      }
+      h3{
+        float: none;
+        width: 100%;
+        margin: 0;
+      }
+      p{
+        display: none;
+      }
+      .thumb{
+        display: table;
+        float: none;
+        width: 100%;
+        span{
+          display: table-cell;
+          vertical-align: middle;
+          text-align: center;
+        }
+        img{
+          max-width: 100%;
+        }
+      }
+    }
+    &.clmn-4{
+      padding-bottom: 40px;
+      .block{
+        padding: 30px 0 0;
+        a{
+          background: image-url('common/sp/arw-right.svg') right 10px center no-repeat;
+          background-size: 18px auto;
+        }
+      }
+      .thumb{
+        span{
+          padding: 10px 0;
+          text-align: center;
+        }
+        img{
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+.pageBannerArea{
+  height: 300px;
+}
+.pageBanner-pc, .categoryBanner-pc{
+  display: none;
+}
+.pageBanner-mobile, .categoryBanner-mobile{
+  display: block;
+  height: 300px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.pageBanner-mobile{
+  background-color: transparent;
+}
+.pageTitleArea{
+  height: 300px;
+}
+.pageTitleArea-inner{
+  padding: 0 30px!important;
+  @include box_sizing;
+}
+.pageTitle{
+  // padding-left: ( image-width('common/icn-fukuda-white.png') / 2 );
+  padding: 0 0 0 image-width('common/icn-fukuda-white.png') / 4.5;
+  text-align: left;
+  font-size: 3rem;
+  line-height: 1.2;
+  span{
+    &:before{
+      margin-top: 4px;
+      margin-left: - ( image-width('common/icn-fukuda-white.png') / 4 + 13px );
+      width: image-width('common/icn-fukuda-white.png') / 3;
+      height: image-height('common/icn-fukuda-white.png') / 3;
+    }
+  }
+}
+.pageTitle-single{
+  padding: 0 0 0 image-width('common/icn-fukuda-white.png') / 4.5;
+  padding-bottom: 30px;
+  font-size: 1.3rem;
+  span{
+    font-size: 2.6rem;
+    &:before{
+      margin-top: 8px;
+      margin-left: - ( image-width('common/icn-fukuda-white.png') / 3 + 8 );
+      width: image-width('common/icn-fukuda-white.png') / 4;
+      height: image-height('common/icn-fukuda-white.png') / 4;
+    }
+  }
+}
+.itemSliderArea{
+  .itemThumbs{
+    width: auto;
+    padding: 0 20px 10px;
+    .slick-list{
+      padding: 0!important;
+    }
+    .slick-prev, .slick-next{
+      width: 30px;
+      background-color: #fff;
+      background-size: 10px auto;
+      background-position: center center;
+    }
+    .navItem{
+      position: relative;
+      margin: 0;
+      padding: 0 10px;
+      @include box_sizing;
+      >div{
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      span{
+        display: table;
+        height: 100%;
+        border: 1px solid #ccc;
+        @include box_sizing;
+      }
+      strong{
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+  }
+  .itemSlide{
+    width: 100%;
+    margin: 0 0 20px;
+    .mainItem{
+      height: 100%;
+    }
+  }
+}
+// products index
+.products-index, .post-type-archive-products{
+}
+
+// products category
+.products-category, .tax-products_category{
+  .pageBannerArea{
+    h1{
+      padding-left: ( image-width('common/icn-fukuda-white.png') / 2 );
+      font-size: 3rem;
+      line-height: 1.2;
+      &:before{
+        margin-top: 4px;
+        margin-left: - ( image-width('common/icn-fukuda-white.png') / 4 + 13px );
+        width: image-width('common/icn-fukuda-white.png') / 3;
+        height: image-height('common/icn-fukuda-white.png') / 3;
+      }
+    }
+  }
+  .introArea{
+    padding: 30px 40px 40px;
+    text-align: justify;
+  }
+  .innerBlock{
+    >h2{
+      position: relative;
+      margin: 0 20px;
+      padding: 0 0 0 45px;
+      font-size: 2.4rem;
+      line-height: 1.2;
+      &:before{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 45px;
+        height: 26px;
+        margin-top: 0;
+        background-position: left center;
+        background-size: auto 100%;
+      }
+    }
+  }
+  .itemIndexList{
+    padding: 30px 0 50px;
+    @include background( linear-gradient(#e8e8e8 5%, #fff 40%, #fff 50%) );
+  }
+  .itemLists{
+    display: block;
+    padding: 0;
+  }
+}
+
+// products single
+.single-products,
+.products-single{
+  .pageBannerArea{
+    background-image: none!important;
+    .innerBlock{
+      display: table;
+      width: 100%;
+      height: 100%;
+      padding: 0 30px;
+      background-size: cover;
+      background-position: center center;
+    }
+    h1{
+      padding-bottom: 30px;
+      text-align: left;
+      vertical-align: bottom;
+      font-size: 1.3rem;
+      span{
+        font-size: 2.6rem;
+      }
+    }
+  }
+  .introArea{
+    padding: 35px 0 45px;
+  }
+
+  .itemSliderArea, .itemDetail{
+    width: 100%;
+    float: none;
+  }
+  .itemSliderArea{
+    margin-bottom: 10px;
+    .itemThumbs, .itemSlide{
+      float: none;
+    }
+    .itemSlide{
+      padding: 0 30px;
+    }
+  }
+  .itemDetail{
+    padding: 0 30px;
+    min-height: inherit;
+    @include box_sizing;
+    h2{
+      margin-bottom: 20px;
+      font-size: 2.4rem;
+    }
+  }
+  .categoryName{
+    margin: 0 0 5px;
+  }
+  .descriptionText-box{
+    padding: 0 0 20px;
+  }
+  .descriptionText{
+    margin: 0 0 15px;
+  }
+  .links{
+    position: relative;
+    bottom: inherit;
+    left: inherit;
+    width: 100%;
+    li{
+      font-size: 1.2rem;
+      display: inline-block;
+      width: 40%;
+    }
+    a{
+      vertical-align: middle;
+      &:before{
+        vertical-align: middle;
+      }
+    }
+  }
+  .specArea{
+    padding: 0 10px;
+    .innerBlock{
+      padding: 30px 0;
+      &:before{
+        display: none;
+      }
+    }
+  }
+  .features, .specs{
+    float: none;
+    width: 100%;
+    height: auto!important;
+    padding: 0 20px;
+  }
+  .features{
+    padding-bottom: 25px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #fff;
+    ul{
+      margin: 20px 0 0;
+    }
+    li{
+      display: block;
+      width: 100%;
+      padding: 0 0 0 18px;
+      margin: 0 0 5px;
+    }
+  }
+  .specs{
+    h4{
+      margin-top: 20px;
+    }
+    p{
+      margin: 0 0 20px;
+    }
+  }
+  .noneSpec{
+    .features{
+      padding-right: 20px;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border: 0;
+      ul{
+        margin: 20px 0 0;
+      }
+      li{
+        width: 100%;
+      }
+    }
+  }
+  .hardwareRecArea{
+    border-top: 0;
+    .innerBlock{
+      border-top: 1px solid #fff;
+      padding: 30px 20px 40px;
+    }
+  }
+  .req-item{
+    float: none;
+    width: 100%;
+    margin-right: 0;
+  }
+  .req-title{
+    margin-bottom: 5px;
+  }
+}
+
+// --------------------------------------------------
+
+
+// news
+// --------------------------------------------------
+// news archive
+.postArchive-item{
+  margin: 0 0 30px;
+}
+.postArchive-item-header{
+  margin: 0 0 5px;
+}
+.postArchive-item-date{
+  font-size: 1.6rem;
+}
+.postArchive-item-hasThumb{
+  .postArchive-item-thumb,
+  .postArchive-item-detail{
+    float: none;
+    width: 100%;
+  }
+}
+.postArchive-item-thumb{
+  margin-bottom: 10px;
+  img{
+    width: 100%;
+    height: auto;
+  }
+}
+.postArchive-item-desc{
+  font-size: 1.3rem;
+  line-height: 1.5;
+}
+.postArchive-item-meta{
+  font-size: 1.1rem;
+}
+.postArchive-item-comment{
+  li{
+    margin-left: 5px;
+    font-size: 1.1rem;
+  }
+}
+
+// news single
+.article_post{
+  padding: 0 30px!important;
+}
+// --------------------------------------------------
+
+
+// あなたは医療従事者ですか modal popup
+// --------------------------------------------------
+.mfp-opened{
+  // .mainImageWrapper{
+  //   // height: 380px;
+  //   height: calc( 100vh - #{$headerHeight} )!important;
+  //   h2{
+  //     bottom: 50px;
+  //   }
+  // }
+}
+
+.mfp-wrap{
+  // z-index: 99;
+}
+.modal-isPro{
+  width: 90%;
+  height: auto;
+  padding: 30px 0 40px;
+}
+.modal-isPro-title{
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+.modal-isPro-buttons{
+  a,
+  input,
+  button,
+  .mfp-close{
+    @extend .btn;
+    @extend .btn-large;
+    margin: 0 10px;
+    padding: 10px 20px;
+    width: 20%;
+    font-size: 1.6rem;
+  }
+}
+// --------------------------------------------------
+
+
+// cookie check
+// --------------------------------------------------
+.cookie-check{
+  padding: 20px 0 25px;
+}
+.cookie-check-inner{
+  padding: 0;
+  width: 100%;
+}
+.cookie-check-desc,
+.cookie-check-buttons{
+  display: block;
+}
+.cookie-check-desc{
+  margin: 0 0 15px;
+  padding: 0 50px;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+.cookie-check-buttons{
+  text-align: center;
+  .btn{
+    padding: 10px;
+    font-size: 1.3rem;
+  }
+}
+// --------------------------------------------------
+
+
+// その他ページ
+// --------------------------------------------------
+.mainBannerWrapper{
+  height: 40vw;
+  background-image: none;
+  .mainBannerWrapper-inner{
+    display: table;
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-image: image-url('temp/headerbanner-sp.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  h1{
+    display: table-cell;
+    display: none;
+    vertical-align: middle;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: $keyColor;
+    span{
+      background: rgba(#fff, 0.6);
+    }
+  }
+}
+.page-template-default{
+}
+
+
+/* =====================================
+  footer
+===================================== */
+
+.footer {
+  padding: 40px 0;
+  .siteLogo, .footerNavs{
+    float: none;
+  }
+  .siteLogo{
+    width: 140px;
+    margin: 0 0 30px;
+    img{
+      max-width: 100%;
+    }
+  }
+  .innerBlock{
+    padding: 0 10px 20px;
+  }
+  .copyright{
+    padding: 0 10px;
+    font-size: 1.2rem;
+    text-align: right;
+  }
+}
+.footerNavs{
+  width: 60%;
+  min-width: inherit;
+  padding: 0 0 0 25px;
+  margin: 0 20px 0 0;
+  line-height: 1.3;
+  p{
+    margin: 0;
+    padding: 0;
+    border-color: rgba(#fff, 0.7);
+    a{
+      display: block;
+      padding: 7px 10px;
+      &:before{
+        display: inline-block;
+        content: '';
+        width: 6px;
+        height: 6px;
+        margin: 0 10px 0 0;
+        background: #fff;
+        vertical-align: middle;
+      }
+      &:hover{
+        text-decoration: none;
+      }
+    }
+  }
+  ul, span{
+    display: none;
+  }
+  &.sp{
+    p{
+      &:first-of-type{
+        border-top: 1px solid rgba(#fff, 0.7);
+      }
+    }
+  }
+}
+
+
+/*-----------------------------------
+ *  @media screen
+ *----------------------------------*/
+
+@media screen and (min-width: 1441px) {
+}
+
+// 767px以上 のみ有効
+@media screen and (min-width: 767px) {
+  .mainBannerWrapper{
+    height: 28vw;
+    .mainBannerWrapper-inner{
+      display: none;
+    }
+  }
+  .pageBannerArea{
+    height: 400px;
+  }
+  .pageTitleArea{
+    height: 400px;
+  }
+  .pageBanner-mobile,
+  .categoryBanner-mobile{
+    height: 400px;
+  }
+
+}
+
+// 767px以下 のみ有効
+@media screen and (max-width: 767px) {
+}

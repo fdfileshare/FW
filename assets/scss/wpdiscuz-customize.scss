@@ -1,0 +1,231 @@
+@charset "UTF-8";
+
+@import "_var", "_screen", "_mixin", "_keyframe", "_extend";
+
+/*--------------------------------------------------------------
+wpDiscuz
+--------------------------------------------------------------*/
+.comments-area{
+  width:auto;
+}
+i.fa{
+  font-style: normal;
+}
+#wc-comment-header, .wc-form-header{
+  padding: 0;
+  font-size: 2.4rem;
+  color: $keyColor;
+  font-weight: 700;
+}
+#comments{
+  margin-top: 40px;
+  padding-top: 50px;
+  border-top: #ddd solid 1px;
+  background: image-url('common/spin.svg') center center no-repeat;
+  min-height: 300px;
+  &.loaded{
+    background-image: none;
+  }
+}
+#wc_show_hide_loggedin_username{
+  padding-left: 0;
+  padding-right: 0;
+}
+#wpcomm {
+  display: none;
+  margin-top: 0;
+  border: 0;
+  .wc-thread-wrapper{
+    padding: 10px 0 20px;
+  }
+  .wc-reply{
+    .wc-comment-right{
+      background: none!important;
+    }
+  }
+  .wc-comment-bar{
+    display: none;
+  }
+  .wc-form-wrapper{
+    padding: 50px 0 0;
+    border: 0;
+    border-top: #ddd solid 1px;
+  }
+  .wc-field-comment {
+    margin: 0;
+    .wc-field-avatararea{
+      display:none;
+    }
+  }
+  .wc-field-textarea{
+    margin-left: 0;
+  }
+  .wc-form-footer{
+    margin-left:0!important;
+    display: block!important;
+  }
+  .wpd-form-row{
+    .wpdiscuz-item {
+      padding: 0;
+      margin-bottom: 10px;
+    }
+    .wpd-field{
+      padding: 10px;
+      height: auto!important;
+    }
+  }
+  .wc-field-textarea{
+    .wpdiscuz-textarea-wrap {
+      border: 0;
+    }
+    textarea{
+      height: auto;
+      min-height: 145px!important;
+      border: 1px solid #e3e3e3!important;
+      resize: vertical;
+    }
+  }
+  .wc-field-submit{
+    .wc_comm_submit{
+      color: white;
+    }
+  }
+  .wc-comment-footer{
+    margin: 5px 0 0;
+    padding: 0;
+    text-align: right;
+    border-bottom: 0;
+    min-height: inherit;
+    .wc-footer-left,
+    .wc-footer-right{
+      float: none;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .wc-footer-right{ // 返信 toggle
+      display: none;
+      width: 22px;
+      .wc-comment-date{
+        display: none;
+      }
+    }
+    .wc-cta-button{
+      display: none;
+    }
+    .wc-vote-link, .wc-vote-result{
+      height: auto;
+      padding: 2px 0;
+      margin-bottom: 0!important;
+      font-size: 1.2rem;
+      line-height: 1;
+      vertical-align: middle;
+    }
+    .wc-down{
+      display: none;
+    }
+    .wc_vote, .wc-vote-result{
+      border: 0;
+    }
+    .wc-vote-result{
+      color: #666;
+      &:before{
+        content: 'Like [ ';
+      }
+      &:after{
+        content: ' ]';
+      }
+    }
+    .wc_vote{
+      .fa-thumbs-up{
+        &:before{
+          content: "\f004";
+        }
+      }
+    }
+  }
+  .avatar{
+    padding: 0;
+    border: 0;
+  }
+  .wc-comment{
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+    .wc-comment-left{
+      width: 42px;
+      margin-top: 2px;
+    }
+    .wc-comment-right{
+      margin-left: 0;
+      .wc-comment-header{
+        margin: 0;
+      }
+      .wc-comment-text{
+        padding: 10px 15px 5px;
+        margin-top: 5px;
+        margin-left: 55px;
+        background: #efefef;
+      }
+    }
+  }
+  .wc-comment-author{
+    float: none;
+    width: 100%;
+    padding: 0 0 5px;
+    font-weight: 600;
+    font-size: 1.8rem;
+    a{
+      font-size: 1.8rem;
+    }
+  }
+}
+.wc_held_for_moderate {
+  background-color: rgba( $keyColor, 0.1 );
+  font-size: 1.3rem;
+  color: $keyColor;
+  border-color: $keyColor;
+  padding: 5px 10px!important;
+}
+.wpdiscuz-loading-bar{
+  position: relative;
+  top: inherit!important;
+}
+
+
+// 768px以下 のみ有効
+@media screen and (max-width: 767px) {
+  #wc-comment-header, .wc-form-header{
+    font-size: 2rem;
+  }
+  #wpcomm {
+    .wc-comment{
+      margin-bottom: 5px;
+      .wc-comment-left{
+        margin: 5px 0 0;
+        .avatar{
+          width: 40px!important;
+          height: 40px!important;
+          margin-top: 3px;
+        }
+      }
+      .wc-comment-right{
+        .wc-comment-text{
+          margin-left: 50px;
+          margin-top: 0;
+          font-size: 1.2rem!important;
+        }
+      }
+    }
+    .wc-comment-author{
+      padding-bottom: 2px;
+      font-size: 1.4rem;
+      a{
+        font-size: 1.6rem;
+      }
+    }
+    .wc-form-wrapper{
+      padding-top: 40px;
+    }
+  }
+}

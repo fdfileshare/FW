@@ -1,0 +1,24 @@
+
+/*
+　exdtend
+===================================== */
+
+// extend name
+%imgBorder{
+  // border: 1px solid $color_gray;
+  @include box_sizing;
+  @include border-radius(10px);
+}
+
+%liquidStyle{
+  max-width: $maxWidth;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+%defaultLink{
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}

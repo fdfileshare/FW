@@ -1,0 +1,42 @@
+//
+//　keyframe
+// =====================================
+// @keyframes rotateplane {
+//   0% { transform: perspective(30px) rotateY(0deg) }
+//   50% { transform: perspective(30px) rotateY(200deg) }
+//   100% { transform: perspective(30px) rotateY(360deg) }
+// }
+
+// animation-timing-function:cubic-bezier(.24,.65,.44,.88);
+
+/* fadein contents */
+@include keyframes_excepted_safari( fadeIn ) {
+0% { opacity: 0; transform: translateY(10px); }
+60% { opacity: 0; transform: translateY(10px); }
+100% { opacity: 1; transform: translateY(0); }
+}
+
+@-webkit-keyframes fadeIn {
+0% { opacity: 0; -webkit-transform: translateY(10px); }
+60% { opacity: 0; -webkit-transform: translateY(10px); }
+100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+
+// @include keyframes_excepted_safari( fadeIn ) {
+// 0% { opacity: 0; top: 10px; }
+// 60% { opacity: 0; top: 10px; }
+// 100% { opacity: 1; top: 0; }
+// }
+
+// @-webkit-keyframes fadeIn {
+// 0% { opacity: 0; top: 10px; }
+// 60% { opacity: 0; top: 10px; }
+// 100% { opacity: 1; top: 0; }
+// }
+
+@include keyframes_excepted_safari( move ) {
+0%{ opacity: 0; margin-left: 0; }
+2%{ opacity: 1; margin-left: 0; }
+15%{ opacity: 1; margin-left: 0; }
+100%{ opacity: 1; margin-left: -710px;}
+}
